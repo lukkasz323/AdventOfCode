@@ -1,6 +1,6 @@
-﻿namespace AoC_2022
+﻿namespace AoC_2022;
+
+public abstract class Day
 {
-    internal class Day
-    {
-    }
+    public abstract void Run();
 }
