@@ -1,5 +1,4 @@
 ﻿using AoC_2022.Days;
-using System.Reflection;
 
 namespace AoC_2022;
 
@@ -10,13 +9,13 @@ public class Program
         const string Title = "Advent of Code 2022";
         const string Author = "lukkasz323";
 
-        Console.WriteLine($"{Title} - Solutions by {Author}\n");
+        Console.WriteLine($"\n   {Title} - {Author}\n");
 
         List<Day> days = CreateListOfDays();
-
-        if (args.Length == 1 && int.TryParse(args[0], out int dayIndex) && dayIndex < days.Count)
+        
+        if (args.Length == 1 && int.TryParse(args[0], out int dayIndex) && dayIndex > 0 && dayIndex <= days.Count)
         {
-            RunDayInContainer(days, dayIndex);
+            RunDayInContainer(days, dayIndex - 1);
         }   
         else
         {
