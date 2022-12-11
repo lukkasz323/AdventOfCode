@@ -12,18 +12,24 @@ public class Program
         Console.WriteLine($"\n   {Title} - {Author}\n");
 
         List<Day> days = CreateListOfDays();
-        
         if (args.Length == 1 && int.TryParse(args[0], out int dayIndex) && dayIndex > 0 && dayIndex <= days.Count)
         {
-            RunDayInContainer(days, dayIndex - 1);
+            RunDayInContainer(days, dayIndex);
         }   
         else
         {
             for (int i = 0; i < days.Count; i++)
             {
-                RunDayInContainer(days, i);
+                RunDayInContainer(days, i + 1);
             }
         }
+    }
+
+    private static void RunDayInContainer(List<Day> days, int dayIndex)
+    {
+        Console.WriteLine($"---[Day {dayIndex}]---");
+        days[dayIndex - 1].Start();
+        Console.WriteLine($"--------------\n");
     }
 
     private static List<Day> CreateListOfDays() => new() {
@@ -53,11 +59,4 @@ public class Program
         new Day24(),
         new Day25()
     };
-
-    private static void RunDayInContainer(List<Day> days, int dayIndex)
-    {
-        Console.WriteLine($"---[Day {dayIndex + 1}]---");
-        days[dayIndex].Run();
-        Console.WriteLine($"--------------\n");
-    }
 }
