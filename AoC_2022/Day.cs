@@ -2,23 +2,37 @@
 
 public abstract class Day
 {
-    protected abstract void Run(string puzzleInput);
+    public string PuzzleInput { get; private set; } = "";
+    public int Solution1 { get; protected set; }
+    public int Solution2 { get; protected set; }
+
+    protected abstract void Run();
 
     public string GetPuzzleInput()
     {
         int dayIndex = int.Parse(GetType().Name[3..]);
-        using StreamReader text = File.OpenText(@$"PuzzleInputs\{dayIndex}.txt");
-        return text.ReadToEnd();
+        try
+        {
+            using StreamReader text = File.OpenText(@$"PuzzleInputs\{dayIndex}.txt");
+            return text.ReadToEnd();
+        }
+        catch (FileNotFoundException)
+        {
+            return "";
+        }
     }
 
     public void Start()
     {
-        try
+        PuzzleInput = GetPuzzleInput();
+        if (PuzzleInput != "")
         {
-            string puzzleInput = GetPuzzleInput();
-            Run(puzzleInput);
+            Run();
+
+            Console.WriteLine($"Part 1: {Solution1}");
+            Console.WriteLine($"Part 2: {Solution2}");
         }
-        catch (FileNotFoundException)
+        else
         {
             Console.WriteLine("Puzzle input not found!");
         }

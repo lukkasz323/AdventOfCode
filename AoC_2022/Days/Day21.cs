@@ -2,8 +2,8 @@
 
 public class Day21 : Day
 {
-    protected override void Run(string puzzleInput)
+    protected override void Run()
     {
-
+	    
     }
 }
