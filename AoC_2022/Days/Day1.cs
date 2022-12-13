@@ -6,17 +6,16 @@ public class Day1 : Day
     {
         var elves = new List<int>();
         int calories = 0;
-        string[] split = PuzzleInput.Split("\r\n");
-        foreach (string item in split)
+        foreach (string line in PuzzleInput.Split("\r\n"))
         {
-            if (item != "")
+            if (line != "")
             {
-                calories += int.Parse(item);
+                calories += int.Parse(line);
             }
             else
             {
-                calories = 0;
                 elves.Add(calories);
+                calories = 0;
             }
         }
 
