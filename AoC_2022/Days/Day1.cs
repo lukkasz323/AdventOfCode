@@ -2,30 +2,30 @@
 
 public class Day1 : Day
 {
-    private List<int> GetElfs()
+    private List<int> GetElves()
     {
-        var elfs = new List<int>();
+        var elves = new List<int>();
         int calories = 0;
         string[] split = PuzzleInput.Split("\r\n");
         foreach (string item in split)
         {
-            if (item == "")
-            {
-                elfs.Add(calories);
-                calories = 0;
-            }
-            else
+            if (item != "")
             {
                 calories += int.Parse(item);
             }
+            else
+            {
+                calories = 0;
+                elves.Add(calories);
+            }
         }
 
-        return elfs;
+        return elves;
     }
 
     protected override void Run()
     {
-        List<int> elfs = GetElfs();
+        List<int> elfs = GetElves();
 
         Solution1 = elfs.Max();
         Solution2 = elfs.OrderDescending().Take(3).Sum();
