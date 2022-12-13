@@ -20,4 +20,14 @@ public class EndToEnd
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((70374, 204610)));
     }
+
+    [Test]
+    public void Day2()
+    {
+        var day = new Day2();
+
+        day.Start();
+
+        Assert.That((day.Solution1, day.Solution2), Is.EqualTo((11603, 12725)));
+    }
 }
