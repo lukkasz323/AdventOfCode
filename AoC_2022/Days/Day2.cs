@@ -4,6 +4,32 @@ namespace AoC_2022.Days;
 
 public class Day2 : Day
 {
+    private static int AddScore(
+        Choice opponentChoice,
+        Choice yourChoice,
+        Dictionary<Choice, Choice> choiceBeatings,
+        Dictionary<Choice, int> choiceValues)
+    {
+        int roundScore = 0;
+
+        // Passive reward
+        roundScore += 3 + choiceValues[yourChoice];
+
+        // Lose 
+        if (choiceBeatings[opponentChoice] == yourChoice)
+        {
+            roundScore -= 3;
+        }
+
+        // Win
+        if (choiceBeatings[yourChoice] == opponentChoice)
+        {
+            roundScore += 3;
+        }
+
+        return roundScore;
+    }
+
     private List<(char, char)>? GetListOfRounds()
     {
         var rounds = new List<(char opponent, char you)>();
@@ -48,33 +74,20 @@ public class Day2 : Day
         };
 
         // Part 1
-        int yourScore = 0;
+        int totalScore = 0;
 
         foreach ((char, char) round in rounds)
         {
             Choice opponentChoice = charToChoice[round.Item1];
             Choice yourChoice = charToChoice[round.Item2];
 
-            // Passive reward
-            yourScore += 3 + choiceValues[yourChoice];
-
-            // Lose 
-            if (choiceBeatings[opponentChoice] == yourChoice)
-            {
-                yourScore -= 3; 
-            }
-
-            // Win
-            if (choiceBeatings[yourChoice] == opponentChoice)
-            {
-                yourScore += 3; 
-            }
+            totalScore += AddScore(opponentChoice, yourChoice, choiceBeatings, choiceValues);
         }
 
-        Solution1 = yourScore;
+        Solution1 = totalScore;
 
         // Part 2
-        yourScore = 0;
+        totalScore = 0;
 
         foreach ((char, char) round in rounds)
         {
@@ -82,29 +95,16 @@ public class Day2 : Day
             char order = round.Item2;
             Choice yourChoice = order switch
             {
-                'Y' => opponentChoice,                                  // draw
-                'X' => choiceBeatings[opponentChoice],                  // lose
-                'Z' => choiceBeatings[choiceBeatings[opponentChoice]],  // win
+                'Y' => opponentChoice,                                  // Draw
+                'X' => choiceBeatings[opponentChoice],                  // Lose
+                'Z' => choiceBeatings[choiceBeatings[opponentChoice]],  // Win
                 _ => throw new NotImplementedException(),
             };
 
-            // Passive reward
-            yourScore += 3 + choiceValues[yourChoice];
-
-            // Lose 
-            if (choiceBeatings[opponentChoice] == yourChoice)
-            {
-                yourScore -= 3;
-            }
-
-            // Win
-            if (choiceBeatings[yourChoice] == opponentChoice)
-            {
-                yourScore += 3;
-            }
+            totalScore += AddScore(opponentChoice, yourChoice, choiceBeatings, choiceValues);
         }
 
-        Solution2 = yourScore;
+        Solution2 = totalScore;
     }
 
     enum Choice
