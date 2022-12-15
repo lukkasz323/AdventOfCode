@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace AoC_2022.Days;
+﻿namespace AoC_2022.Days;
 
 public class Day2 : Day
 {
@@ -45,7 +43,7 @@ public class Day2 : Day
         return rounds;
     }
 
-    protected override void Run()
+    protected override void Solve()
     {
         List<(char, char)>? rounds = GetListOfRounds();
         if (rounds == null) return;

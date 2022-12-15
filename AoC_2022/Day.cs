@@ -6,7 +6,7 @@ public abstract class Day
     public int Solution1 { get; protected set; }
     public int Solution2 { get; protected set; }
 
-    protected abstract void Run();
+    protected abstract void Solve();
 
     public string GetPuzzleInput()
     {
@@ -27,7 +27,7 @@ public abstract class Day
         PuzzleInput = GetPuzzleInput();
         if (PuzzleInput != "")
         {
-            Run();
+            Solve();
 
             Console.WriteLine($"Part 1: {Solution1}");
             Console.WriteLine($"Part 2: {Solution2}");

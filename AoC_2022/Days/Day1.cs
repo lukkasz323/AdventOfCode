@@ -22,7 +22,7 @@ public class Day1 : Day
         return elves;
     }
 
-    protected override void Run()
+    protected override void Solve()
     {
         List<int> elfs = GetElves();
 

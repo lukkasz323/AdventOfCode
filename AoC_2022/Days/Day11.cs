@@ -2,7 +2,7 @@
 
 public class Day11 : Day
 {
-    protected override void Run()
+    protected override void Solve()
     {
 	    
     }
