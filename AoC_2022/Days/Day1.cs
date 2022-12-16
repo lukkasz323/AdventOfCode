@@ -6,7 +6,7 @@ public class Day1 : Day
     {
         var elves = new List<int>();
         int calories = 0;
-        foreach (string line in PuzzleInput.Split("\r\n"))
+        foreach (string line in PuzzleInput)
         {
             if (line != "")
             {
@@ -24,9 +24,9 @@ public class Day1 : Day
 
     protected override void Solve()
     {
-        List<int> elfs = GetElves();
+        List<int> elves = GetElves();
 
-        Solution1 = elfs.Max();
-        Solution2 = elfs.OrderDescending().Take(3).Sum();
+        Solution1 = elves.Max();
+        Solution2 = elves.OrderDescending().Take(3).Sum();
     }
 }

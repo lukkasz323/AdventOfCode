@@ -32,7 +32,7 @@ public class Day2 : Day
     {
         var rounds = new List<(char opponent, char you)>();
 
-        foreach (string line in PuzzleInput.Split("\r\n"))
+        foreach (string line in PuzzleInput)
         {
             if (line.Length == 0) continue;
             if (line.Length != 3) return null;
