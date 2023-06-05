@@ -28,7 +28,7 @@ public class Program
     private static void RunDayInContainer(List<Day> days, int dayIndex)
     {
         Console.WriteLine($"---[Day {dayIndex}]---");
-        days[dayIndex - 1].Start();
+        days[dayIndex - 1].Run();
         Console.WriteLine($"--------------\n");
     }
 

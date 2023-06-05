@@ -4,7 +4,7 @@ public class Day3 : Day
 {
     private static int GetItemPriority(char item)
     {
-        int priority = 0;
+        int priority;
 
         if (item >= 'a' && 'z' >= item)
         {
@@ -29,8 +29,8 @@ public class Day3 : Day
 
 		foreach (string line in PuzzleInput.Where(x => x != ""))
 		{
-            List<char> firstHalf = line.Take(line.Length / 2).ToList();
-            List<char> secondHalf = line.Skip(line.Length / 2).ToList();
+            var firstHalf = line.Take(line.Length / 2).ToList();
+            var secondHalf = line.Skip(line.Length / 2).ToList();
 
             char item = firstHalf.Intersect(secondHalf).First();
             prioritiesSum += GetItemPriority(item);

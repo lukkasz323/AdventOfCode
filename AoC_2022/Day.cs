@@ -3,9 +3,10 @@
 public abstract class Day
 {
     public List<string> PuzzleInput { get; private set; } = new();
-    public int Solution1 { get; protected set; }
-    public int Solution2 { get; protected set; }
+    public object? Solution1 { get; protected set; }
+    public object? Solution2 { get; protected set; }
 
+    /// <summary> Should change Solution1 and Solution2 properties. </summary>
     protected abstract void Solve();
 
     public List<string> GetPuzzleInput()
@@ -23,7 +24,7 @@ public abstract class Day
         }
     }
 
-    public void Start()
+    public void Run()
     {
         PuzzleInput = GetPuzzleInput();
         if (PuzzleInput.Count != 0)

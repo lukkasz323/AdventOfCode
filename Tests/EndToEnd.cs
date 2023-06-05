@@ -16,7 +16,7 @@ public class EndToEnd
     {
         var day = new Day1();
         
-        day.Start();
+        day.Run();
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((70374, 204610)));
     }
@@ -26,7 +26,7 @@ public class EndToEnd
     {
         var day = new Day2();
 
-        day.Start();
+        day.Run();
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((11603, 12725)));
     }
@@ -36,7 +36,7 @@ public class EndToEnd
     {
         var day = new Day3();
 
-        day.Start();
+        day.Run();
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((8176, 2689)));
     }
@@ -46,7 +46,7 @@ public class EndToEnd
     {
         var day = new Day4();
 
-        day.Start();
+        day.Run();
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((515, 883)));
     }
