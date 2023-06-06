@@ -50,4 +50,14 @@ public class EndToEnd
 
         Assert.That((day.Solution1, day.Solution2), Is.EqualTo((515, 883)));
     }
+
+    [Test]
+    public void Day5()
+    {
+        var day = new Day5();
+
+        day.Run();
+
+        Assert.That((day.Solution1, day.Solution2), Is.EqualTo(("CVCWCRTVQ", "CNSCZWLVT")));
+    }
 }

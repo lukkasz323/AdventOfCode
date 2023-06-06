@@ -9,26 +9,17 @@ public class Day5 : Day
     protected override void Solve()
     {
         int seperationLineIndex = PuzzleInput.IndexOf("");
-        List<Stack<char>> cargo = GetCargoFromInput(seperationLineIndex);
+
+        List<Stack<char>> cargo1 = GetCargoFromInput(seperationLineIndex);
+        List<Stack<char>> cargo2 = GetCargoFromInput(seperationLineIndex);
+
         List<Procedure> procedures = GetProceduresFromInput(seperationLineIndex);
 
-        foreach (Procedure procedure in procedures)
-        {
-            for (int i = 0; i < procedure.Quantity; i++)
-            {
-                char crate = cargo[procedure.From - 1].Pop();
-                cargo[procedure.To - 1].Push(crate);
-            }
-        }
+        RunProceduresOnCargo_Part1(cargo1, procedures);
+        RunProceduresOnCargo_Part2(cargo2, procedures);
 
-        var solution1 = new StringBuilder();
-        foreach (Stack<char> crateStack in cargo)
-        {
-            solution1.Append(crateStack.First());
-        }
-
-        Solution1 = solution1;
-        Solution2 = 0;
+        Solution1 = GetSolution(cargo1);
+        Solution2 = GetSolution(cargo2);
     }
 
     private List<Stack<char>> GetCargoFromInput(int seperationLineIndex)
@@ -69,6 +60,49 @@ public class Day5 : Day
         }
 
         return procedures;
+    }
+
+    private static void RunProceduresOnCargo_Part1(List<Stack<char>> cargo, List<Procedure> procedures)
+    {
+        foreach (Procedure procedure in procedures)
+        {
+            for (int i = 0; i < procedure.Quantity; i++)
+            {
+                char crate = cargo[procedure.From - 1].Pop();
+                cargo[procedure.To - 1].Push(crate);
+            }
+        }
+    }
+
+    private static void RunProceduresOnCargo_Part2(List<Stack<char>> cargo, List<Procedure> procedures)
+    {
+        var crane = new Stack<char>();
+
+        foreach (Procedure procedure in procedures)
+        {
+            for (int i = 0; i < procedure.Quantity; i++)
+            {
+                char crate = cargo[procedure.From - 1].Pop();
+                crane.Push(crate);
+            }
+            for (int i = 0; i < procedure.Quantity; i++)
+            {
+                char crate = crane.Pop();
+                cargo[procedure.To - 1].Push(crate);
+            }
+        }
+    }
+
+    private static string GetSolution(List<Stack<char>> cargo)
+    {
+        var solution1 = new StringBuilder();
+
+        foreach (Stack<char> crateStack in cargo)
+        {
+            solution1.Append(crateStack.First());
+        }
+
+        return solution1.ToString();
     }
 
     public readonly record struct Procedure(int Quantity, int From, int To);
