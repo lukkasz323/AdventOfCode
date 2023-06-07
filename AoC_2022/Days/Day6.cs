@@ -4,6 +4,6 @@ public class Day6 : Day
 {
     protected override void Solve()
     {
-	    
+
     }
 }
